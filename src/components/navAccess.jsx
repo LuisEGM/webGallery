@@ -3,8 +3,8 @@ import "./navAccess.css"
 
 const NavAccess = () => {
     return (
-        <div className="border">
-            Componente de navegacion de accesos
+        <div >
+            <h1 className= "texto">WebGallery</h1>
         </div>
     )
 }

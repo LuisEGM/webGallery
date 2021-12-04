@@ -1,11 +1,20 @@
-import React from 'react'
+import React ,{useState} from 'react'
+
 import NavAccess from '../components/navAccess'
+import FormLogin from '../components/formLogin'
 
 const Login = () => {
+
+
     return (
         <div>
             <NavAccess/>
-            Pagina de login
+            <div className="contenedor">
+            <FormLogin/>
+            </div>
+            
+            
+            
         </div>
     )
 }

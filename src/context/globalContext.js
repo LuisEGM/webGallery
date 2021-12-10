@@ -8,6 +8,8 @@ const initialState = {
   price: 0,
   image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Sgaglb-AfOqGPKS8iW0qSUk99iflqqneNw&usqp=CAU",
   productEdit: {},
+  obraView: {},
+  propietarioObraView: {},
   carrito: [],
   totalPagar: 0,
   totalItems: 0,
@@ -18,6 +20,14 @@ export const GlobalContext = createContext(initialState);
 
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
+
+  const setObraView = (obra) => {
+    dispatch({ type: "SET_OBRA_VIEW", payload: { obra } });
+  };
+
+  const setPropietarioObraView = (propietario) => {
+    dispatch({ type: "SET_PROPIETARIO_OBRA_VIEW", payload: { propietario } });
+  };
 
   const changeProductName = (productName) => {
     dispatch({ type: "CHANGE_NAME", payload: { productName } });
@@ -76,7 +86,9 @@ export const ContextProvider = ({ children }) => {
         updateQuantityProductInCarrito,
         updateProductList,
         loadProducts,
-        changeToastInfo
+        changeToastInfo,
+        setObraView,
+        setPropietarioObraView
       }}
     >
       {children}

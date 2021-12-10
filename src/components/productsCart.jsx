@@ -94,7 +94,7 @@ const ProductsCart = () => {
         </thead>
         <tbody>
           {carrito.map((p) => (
-            <tr>
+            <tr key={p.idObra} >
               <td style={{ maxWidth: 100, paddingTop: "1.3rem" }}>
                 <p
                   style={{
@@ -103,13 +103,13 @@ const ProductsCart = () => {
                     textOverflow: "ellipsis",
                   }}
                 >
-                  {p.name}
+                  {p.nombre}
                 </p>
               </td>
               <td>
                 <img
                   src={
-                    p.image ||
+                    p.imagen ||
                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Sgaglb-AfOqGPKS8iW0qSUk99iflqqneNw&usqp=CAU"
                   }
                   height="100%"
@@ -118,10 +118,10 @@ const ProductsCart = () => {
                 />
               </td>
               <td style={{ fontSize: "1.3rem", paddingTop: "1.3rem" }}>
-                $ {p.price}{" "}
+                $ {p.precio}{" "}
               </td>
               <td style={{ fontSize: "1.3rem" }}>
-                {printButtons(p.quantity, p.id)}
+                {printButtons(p.quantity, p.idObra)}
               </td>
             </tr>
           ))}

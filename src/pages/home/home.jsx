@@ -8,7 +8,7 @@ import Footer from '../../components/footer'
 const Home = () => {
     return (
         <>
-            <Header />
+            <Header location={"HOME"} />
             <div className="container">
                 <div className="row" style={{ paddingTop: '7rem' }} >
                     <div className="col-md-7 d-flex">
@@ -32,7 +32,7 @@ const Home = () => {
             <div className="container">
                 <div className="col-md-7 mb-5">
                     <div style={{ width: '80%', height: '50%', margin: '0 auto' }}>
-                        <h2 className="texto" style={{fontSize: 40, fontWeight: 'bold'}}>OBRAS DESTACADAS</h2>
+                        <h2 className="texto" style={{fontSize: 40, fontWeight: 'bold', marginTop: 0}}>OBRAS DESTACADAS</h2>
                         <p style={{fontSize: 23, fontWeight: 'bold'}} >Lo que sea que busques en cuanto a arte, aquí lo podras encontrar.</p>
                     </div>
                 </div>
@@ -59,7 +59,7 @@ const Home = () => {
                 </button>
             </div>
             <div style={{ textAlign: 'center', margin: '80px 0 -150px 0' }}>
-                <h2 className="texto" style={{fontSize: 25, fontWeight: 'bold'}}>Un sms de publicidad</h2>
+                <h2 className="texto" style={{fontSize: 25, fontWeight: 'bold'}}>Un mensaje de publicidad</h2>
                 <p style={{fontSize: 20, fontWeight: 'bold'}} >Una descripción del gingle de publicidad.</p>
             </div>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#0E2741" fill-opacity="1" d="M0,256L80,250.7C160,245,320,235,480,245.3C640,256,800,288,960,293.3C1120,299,1280,277,1360,266.7L1440,256L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>

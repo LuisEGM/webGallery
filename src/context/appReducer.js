@@ -3,7 +3,7 @@ export const getTotalItems = (carrito) => {
 }
 
 export const getTotalPagar = (carrito) => {
-    return carrito.reduce((total, product) => total + product.price * product.quantity, 0);
+    return carrito.reduce((total, product) => total + product.precio * product.quantity, 0);
 }
 
 export function appReducer(state, action) {
@@ -16,9 +16,8 @@ export function appReducer(state, action) {
 
         case "UPDATE_PRODUCT_LIST":
             if (action.payload.match !== "") {
-                console.log("EL filter se refresca");
                 return {
-                    ...state, productsFilter: state.products.filter(p => p.name.toUpperCase().includes(action.payload.match.toUpperCase()))
+                    ...state, productsFilter: state.products.filter(p => p.nombre.toUpperCase().includes(action.payload.match.toUpperCase()))
                 }
             }
             else {
@@ -42,8 +41,14 @@ export function appReducer(state, action) {
         case "SET_PRODUCT_EDIT":
             return {...state, productEdit: action.payload.product}
         
+        case "SET_OBRA_VIEW":
+            return {...state, obraView: action.payload.obra}
+
+        case "SET_PROPIETARIO_OBRA_VIEW":
+            return {...state, propietarioObraView: action.payload.propietario}
+        
         case "ADD_PRODUCT_TO_CARRITO":
-            if (!state.carrito.find(item => item.id === action.payload.product.id)) {
+            if (!state.carrito.find(item => item.idObra === action.payload.product.idObra)) {
                 state.carrito.push({
                     ...action.payload.product, quantity: 1
                 });
@@ -56,10 +61,10 @@ export function appReducer(state, action) {
             }
         
         case "DELETE_PRODUCT_TO_CARRITO":
-            let partialState = state.carrito.filter(item => item.id !== action.payload.productId)
+            let partialState = state.carrito.filter(item => item.idObra !== action.payload.productId)
             return { 
                 ...state,
-                carrito: [ ...state.carrito.filter(item => item.id !== action.payload.productId) ],
+                carrito: [ ...state.carrito.filter(item => item.idObra !== action.payload.productId) ],
                 totalPagar: getTotalPagar(partialState),
                 totalItems: getTotalItems(partialState)
             }
@@ -69,7 +74,7 @@ export function appReducer(state, action) {
                 let partialState = {
                     ...state,
                     carrito: state.carrito.map(item => {
-                        if (item.id === action.payload.productId) {
+                        if (item.idObra === action.payload.productId) {
                             return {...item, quantity: item.quantity + 1}
                         }
                         else {
@@ -87,7 +92,7 @@ export function appReducer(state, action) {
                 let partialState = {
                     ...state,
                     carrito: state.carrito.map(item => {
-                        if (item.id === action.payload.productId) {
+                        if (item.idObra === action.payload.productId) {
                             return {...item, quantity: item.quantity - 1}
                         }
                         else {

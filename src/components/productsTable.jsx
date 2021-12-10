@@ -7,7 +7,7 @@ import ModalEditar from './modalEditar'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { remove } from '../services/productServices';
+import { remove } from '../services/obrasServices';
 import storeEmpty from '../assets/store-empty.png';
 
 const ProductsTable = ({ reloadTriggerFunction, reloadTriggerValue }) => {

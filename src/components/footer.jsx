@@ -16,15 +16,15 @@ const Footer = () => (
         <div className="footer__right">
             <div className="footer__right__autores">
                 <h3>Creadores</h3>
-                <p>...........</p>
-                <p>...........</p>
+                <p>Jesús Miguel Glen Pedrozo</p>
+                <p>Brandon Deritier Brito Manjarres</p>
                 <p>Jorge Alberto Silva Zambrano</p>
                 <p>Sebastian Troncoso Correa</p>
                 <p>Luis Eduardo Gamez Maldonado</p>
             </div>
             <div className="footer__right__profesor">
                 <h3>Profesor</h3>
-                <p>Johan Alberto Robles Solano</p>
+                <p>Ing. Johan Alberto Robles Solano</p>
             </div>
         </div>
     </div> 

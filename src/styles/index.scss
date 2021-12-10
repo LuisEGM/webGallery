@@ -1,0 +1,20 @@
+$principal: #ec72e7;
+$segundario: #5055e2;
+
+
+@import './home.scss';
+@import './loader.scss';
+@import './footer.scss';
+
+.active-custom {
+    background-color: #EC73E9 !important;
+    color: white !important;
+}
+
+.carousel-control-prev-icon {
+    background-color: black !important;
+}
+
+.carousel-control-next-icon {
+    background-color: black !important;
+}

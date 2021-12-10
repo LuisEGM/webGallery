@@ -3,7 +3,7 @@ import FormProduct from "../components/formProduct"
 import ProductItem from "../components/productItem"
 import { GlobalContext } from '../context/globalContext'
 
-import { update } from '../services/productServices';
+import { update } from '../services/obrasServices';
 
 const ModalEditar = ({ reloadTriggerFunction, reloadTriggerValue }) => {
 
@@ -64,8 +64,8 @@ const ModalEditar = ({ reloadTriggerFunction, reloadTriggerValue }) => {
             <div className="modal-header">
               <h5 className="modal-title">Editar producto</h5>
               <button className="btn btn-danger close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
             <div className="modal-body">
               <div className="row d-flex justify-content-around">

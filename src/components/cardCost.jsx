@@ -23,7 +23,7 @@ const CardCost = () => {
     return (
         <div className="col-md-4" style={{ minHeight: '65vh'}} >
             <div className="card text-white bg-primary mb-3" style={{maxWidth: '20rem'}}>
-            <h3 className="card-header pt-4">Check out</h3>
+            <h3 className="card-header pt-4" style={{ fontWeight: 'bold', color: 'white' }}>Check out</h3>
             <div className="card-body pt-4">
                 <h5 className="card-title">Total de productos</h5>
                 <p style={{ fontSize: '2rem' }} className="card-text">{ totalItems }</p>

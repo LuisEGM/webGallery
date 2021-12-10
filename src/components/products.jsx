@@ -21,13 +21,12 @@ const Products = () => {
   }, [products, productsFilter])
   
   useEffect(() => {
-    console.log("Render de products", products);
+    console.log("Render de obras", products);
     setProductsToList(products)      
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   function mostrarResultadoDeBusqueda() {
-    console.log(busqueda);
     if (busqueda && productsFilter.length === 0) {
       return <p className="pt-3">Resultados de la busqueda: {productsFilter.length} </p>;
     }
@@ -36,7 +35,7 @@ const Products = () => {
 
     }
     else {
-      return <p className="pt-3">{products.length} productos en catálogo </p>;
+      return <p className="pt-3">{products.length} obras en catálogo </p>;
     }
   }
 
@@ -52,8 +51,8 @@ const Products = () => {
               className="form-control me-sm-2"
               type="text"
               placeholder="Search"
-              onChange={handleChange}
               value={match}
+              onChange={handleChange}
             />
           </form>
         </div>
@@ -72,7 +71,7 @@ const Products = () => {
                 <div style={{ width: 150, margin: '50px auto 10px auto'}}>
                     <img src={storeEmpty} alt="cart_empty" width="150" height="150" />
                 </div>
-                <p className="text-center" style={{ fontSize: '1.5rem'}}>Sin productos en el catálogo...!</p>
+                <p className="text-center" style={{ fontSize: '1.5rem'}}>Sin obras en el catálogo o (no coincidencias)...!</p>
             </div>
           )
         }

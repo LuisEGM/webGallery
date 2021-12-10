@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useState } from "react";
 import ProductsTable from "../../components/productsTable";
 import HeaderTest from "../../components/headerTest";
 import { GlobalContext } from '../../context/globalContext';
-import { getAll } from '../../services/productServices';
+import { getAll } from '../../services/obrasServices';
 import Loader from '../../components/loader';
 import { ToastContainer, toast } from 'react-toastify';
 

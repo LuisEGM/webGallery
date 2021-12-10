@@ -5,7 +5,7 @@ import { GlobalContext } from "../context/globalContext";
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { create } from '../services/productServices';
+import { create } from '../services/obrasServices';
 
 const FormProduct = ({ type }) => {
 

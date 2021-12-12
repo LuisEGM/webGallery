@@ -8,6 +8,8 @@ import Home from './pages/home/home';
 import ViewProducts from './pages/vendedor/viewProducts'
 import AddProduct from './pages/vendedor/addProduct'
 
+import Login from './pages/login/login'
+
 import NotFound from './pages/notFound'
 import { ContextProvider } from './context/globalContext'
 
@@ -18,6 +20,7 @@ function App() {
         <Switch>
           <Redirect exact from="/" to="/home" />
           <Route path="/home" component={Home} />
+          <Route path="/login" component={Login} />
           <Route path="/obras" component={Obras} />
           <Route path="/about" component={About} />
           <Route path="/cart" component={Cart} />

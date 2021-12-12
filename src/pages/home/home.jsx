@@ -2,7 +2,9 @@ import React from 'react'
 import Header from '../../components/header'
 import ObraHome from '../../assets/obra-home.svg'
 import Banner from '../../assets/banner.svg'
-import Test from '../../assets/test.svg'
+import Slider1 from '../../assets/Slider1.svg'
+import Slider2 from '../../assets/Slider2.svg'
+import Slider3 from '../../assets/Slider3.svg'
 import Footer from '../../components/footer'
 
 const Home = () => {
@@ -40,13 +42,13 @@ const Home = () => {
             <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item active" data-bs-interval="2000">
-                        <img src={Test} class="d-block w-100" alt="slide1"/>
+                        <img src={Slider1} class="d-block w-100" alt="slide1"/>
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <img src={Test} class="d-block w-100" alt="slide2"/>
+                        <img src={Slider2} class="d-block w-100" alt="slide2"/>
                     </div>
                     <div class="carousel-item" data-bs-interval="2000">
-                        <img src={Test} class="d-block w-100" alt="slide3"/>
+                        <img src={Slider3} class="d-block w-100" alt="slide3"/>
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">

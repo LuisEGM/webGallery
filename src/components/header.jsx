@@ -47,7 +47,7 @@ const Header = ({ location }) => {
       <div className="collapse navbar-collapse" style={{fontSize: '1rem'}} id="navbarColor01">
         <ul className="navbar-nav me-auto">
           <li className="nav-item">
-            <Link to="/home" className="nav-link home ancla">Home
+            <Link to="/home" className="nav-link home ancla">Inicio
               <span className="visually-hidden">(current)</span>
             </Link>
           </li>
@@ -55,14 +55,14 @@ const Header = ({ location }) => {
             <Link to="/obras" className="nav-link obras ancla">Obras</Link>
           </li>
           <li className="nav-item">
-            <Link to="/about" className="nav-link about ancla">About</Link>
+            <Link to="/about" className="nav-link about ancla">Acerca de</Link>
           </li>
         </ul>
         <div className="d-flex">
           <ul className="navbar-nav">
             <li className="nav-item mt-3">
-              {totalItems !== 0 ? (<Link className="nav-link cart ancla" to="/cart"> <img alt="carrito" src="https://img.icons8.com/material-rounded/24/000000/shopping-cart.png"/> Cart ({ totalItems })*</Link>)
-              : (<Link className="nav-link cart ancla" to="/cart"> <img alt="carrito" src="https://img.icons8.com/material-rounded/24/000000/shopping-cart.png"/> Cart ({ totalItems })</Link>)}
+              {totalItems !== 0 ? (<Link className="nav-link cart ancla" to="/cart"> <img alt="carrito" src="https://img.icons8.com/material-rounded/24/000000/shopping-cart.png"/> Carrito ({ totalItems })*</Link>)
+              : (<Link className="nav-link cart ancla" to="/cart"> <img alt="carrito" src="https://img.icons8.com/material-rounded/24/000000/shopping-cart.png"/> Carrito ({ totalItems })</Link>)}
             </li>
           </ul>
           <img src={NameLogo} alt="logo3" width="200" height="80" />

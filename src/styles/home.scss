@@ -1,5 +1,11 @@
-.texto {
+.texto-u1 {
   margin-top: 5rem;
+  background: -webkit-linear-gradient(left,#ec72e7,#5055e2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.texto-u2 {
   background: -webkit-linear-gradient(left,#ec72e7,#5055e2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

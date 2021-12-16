@@ -30,7 +30,7 @@ const Obras = () => {
             <Header location={"OBRAS"} />
             <div className="container">
                 <div className="row text-center mb-3">
-                    <h1 className="texto" style={{fontSize: 40, paddingTop: '2rem', fontWeight: "bold"}}>Catálogo de obras</h1>
+                    <h1 className="texto-u1" style={{fontSize: 40, paddingTop: '2rem', fontWeight: "bold"}}>Catálogo de obras</h1>
                     <p style={{fontSize: 20}} >Encuentra aquí lo que buscas y agregalo a tu carrio.</p>
                 </div>
                 { loader ? <Loader /> : <Products/> }

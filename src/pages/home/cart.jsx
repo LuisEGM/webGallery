@@ -15,7 +15,7 @@ const Cart = () => {
             <Header location={"CART"} />
             <div className="container" >
                 <div className="row text-center" style={{ paddingTop: '7rem' }} >
-                    <h1 className="texto" style={{fontSize: 40, fontWeight: 'bold', marginTop: '0'}}>Completa tu compra</h1>
+                    <h1 className="texto-u1" style={{fontSize: 40, fontWeight: 'bold', marginTop: '0'}}>Completa tu compra</h1>
                     <p style={{fontSize: 20}} >Muy bien, ya casi te haces con las obras que quieres.</p>
                 </div>
                 <div className="row pt-3" >

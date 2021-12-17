@@ -20,8 +20,9 @@ const ProductsTable = ({ reloadTriggerFunction, reloadTriggerValue }) => {
         const result = await remove(id);
         console.log("DELETE PRODUCT => ", result.data);
         
-        toast.error(`El producto con id <${id}> fue eliminado`, {
-          position: "top-right",
+        toast.error(`La obra con id <${id}> fue eliminada`, {
+          theme: "colored",
+          position: "bottom-left",
           autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
@@ -51,9 +52,9 @@ const ProductsTable = ({ reloadTriggerFunction, reloadTriggerValue }) => {
         <div className="row py-3 d-flex justify-content-between">
           <div className="col-3 p-0">Tiene {products.length} en inventario</div>
           <div className="col-3 p-0">
-            <Link to="/admin/add-product">
+            <Link to="/dashboard/add-product">
               <button type="button" class="btn btn-success">
-                Agregar producto
+                Agregar obra
                 <VscAdd />
               </button>
             </Link>
@@ -80,20 +81,19 @@ const ProductsTable = ({ reloadTriggerFunction, reloadTriggerValue }) => {
               {
                 products.map((p) => (
                   <tr key={p.id}>
-                    <th scope="row">{p.id}</th>
-                    <td>{p.name || "Nombre de prueba"}</td>
+                    <th scope="row">{p.idObra}</th>
+                    <td>{p.nombre || "Nombre de prueba"}</td>
                     <td>
-                      <img src={p.image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Sgaglb-AfOqGPKS8iW0qSUk99iflqqneNw&usqp=CAU"} height="100%" width="40" alt="img" />
+                      <img src={p.imagen || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Sgaglb-AfOqGPKS8iW0qSUk99iflqqneNw&usqp=CAU"} height="100%" width="40" alt="img" />
                     </td>
-                    <td>$ {p.price}</td>
+                    <td>$ {p.precio}</td>
                     <td>
                       <button onClick={() => handleClick(p)} name="editar" data-toggle="modal" data-target="#myModal" type="button" className="btn btn-info btn-sm m-1">
                         Editar
                       </button>
-                      <button onClick={() => handleDelete(p.id)} name="eliminar" type="button" className="btn btn-danger btn-sm m-1">
+                      <button onClick={() => handleDelete(p.idObra)} name="eliminar" type="button" className="btn btn-danger btn-sm m-1">
                         Eliminar
                       </button>
-                      {/* <ToastContainer/> */}
                     </td>
                   </tr>
                 ))
@@ -105,7 +105,7 @@ const ProductsTable = ({ reloadTriggerFunction, reloadTriggerValue }) => {
                 <div style={{ width: 150, margin: '50px auto 10px auto'}}>
                     <img src={storeEmpty} alt="cart_empty" width="150" height="150" />
                 </div>
-                <p className="text-center" style={{ fontSize: '1.5rem'}}>Sin productos en el inventario...!</p>
+                <p className="text-center" style={{ fontSize: '1.5rem'}}>Sin obras en el inventario...!</p>
             </div>
           )
         }

@@ -2,10 +2,10 @@ import React, { useEffect, useContext, useState } from "react";
 import ProductsTable from "../../components/productsTable";
 import HeaderTest from "../../components/headerTest";
 import { GlobalContext } from '../../context/globalContext';
-import { getAll } from '../../services/obrasServices';
+import { getByUser } from '../../services/obrasServices';
 import Loader from '../../components/loader';
 import { ToastContainer, toast } from 'react-toastify';
-
+import Dashboard from '../vendedor/dashboard'
 
 const ViewProducts = () => {
   
@@ -21,7 +21,8 @@ const ViewProducts = () => {
       switch (info[0]) {
         case "info":
           toast.info(info[1], {
-            position: "top-right",
+            theme: "colored",
+            position: "bottom-left",
             autoClose: 2500,
             hideProgressBar: false,
             closeOnClick: true,
@@ -32,7 +33,8 @@ const ViewProducts = () => {
           break;
         case "warn":
           toast.warn(info[1], {
-            position: "top-right",
+            theme: "colored",
+            position: "bottom-left",
             autoClose: 2500,
             hideProgressBar: false,
             closeOnClick: true,
@@ -50,7 +52,7 @@ const ViewProducts = () => {
   useEffect(() => {
       (async () => {
           try {
-              const result = await getAll();
+              const result = await getByUser(JSON.parse(localStorage.getItem("user")).id);
               setLoader(false)
               loadProducts(result.data);
               console.log("Data fetch admin", result.data);
@@ -62,11 +64,11 @@ const ViewProducts = () => {
   },[reloadTrigger])
   
   return (
-    <>
+    <Dashboard>
       <HeaderTest />
       <div className="row text-center w-100" style={{ paddingTop: '4rem' }} >
-        <h1 style={{ fontSize: 35 }}>View products</h1>
-        <p style={{ fontSize: 20 }}>Esta sera una lista de los productos</p>
+        <h1 className="texto-u2" style={{ fontSize: 35 }}>Obras en catálogo</h1>
+        <p style={{ fontSize: 20 }}>Desde aquí podras gestionar las obras que quieres vender</p>
       </div>
       { !loader ? (
         <div className="row text-center w-100" style={{ paddingTop: '1rem' }} >
@@ -74,7 +76,7 @@ const ViewProducts = () => {
         </div>
       ) : (<Loader />)}
       <ToastContainer/>
-    </>
+    </Dashboard>
   );
 };
 

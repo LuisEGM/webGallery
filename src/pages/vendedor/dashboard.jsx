@@ -1,34 +1,67 @@
-import React, { useEffect, useState, useRef } from 'react';
-import { Link } from 'react-router-dom'
+import React, { useEffect, useState, useContext } from 'react';
+import { useHistory, Link } from 'react-router-dom'
 import { get } from '../../services/usersService'
+import { AuthContext } from '../../context/authContext'
 
-const Dashboard = () => {
+const Dashboard = ({ children }) => {
 
-    const redirectToHome = useRef(null);
+    const history = useHistory();
+    const { logout } = useContext(AuthContext);
+
     const [user, setUser] = useState({});
 
     const handleClick = e => {
         e.preventDefault();
-        localStorage.removeItem("user");
-        redirectToHome.current.click();
+        if (e.target.name === "cerrar") {
+            logout();
+            history.push("/home");
+        }
+        else {
+
+        }
     }
 
     useEffect(() => {
-        (async () => {
-            let id = JSON.parse(localStorage.getItem("user")).id;
-            const result = await get(id);
-            setUser(result.data) 
-        })();
+        if (localStorage.getItem("user") != null) {
+            (async () => {
+                let id = JSON.parse(localStorage.getItem("user")).id;
+                const result = await get(id);
+                setUser(result.data) 
+            })();
+        }
     }, [])
 
     return (
-        <div>
-            <p>
-            Dasboar del usuario <strong> {user.nombres} </strong> proveniente de la página login
-            </p>
-            <img src={user.avatar} alt="avatar" />
-            <button className="btn btn-primary" onClick={handleClick} >Salir</button>
-            <Link ref={redirectToHome} className="d-none" to="/home"></Link>
+        <div id="wrapper" class="toggled">
+            <div id="sidebar-wrapper">
+                <div class="text-center py-4">
+                    <div class="user-logo">
+                        <div>
+                            <img className="border rounded-circle" src={user.avatar} style={{ width: '80px', height: '80px' }} alt="logo" />
+                        </div>
+                        <h5 className="mt-1">{user.nombres+" "+user.apellidos}</h5>
+                    </div>
+                </div>
+                <ul class="sidebar-nav" style={{ paddingTop: "11rem" }} >
+                    <li className="seleccionado">
+                        <Link to="/dashboard/view-products" >Obras en catálogo</Link>
+                    </li>
+                    <li>
+                        <Link to="/dashboard/buy-orders" >Ordenes de compra</Link>
+                    </li>
+                    <li>
+                        <Link to="/dashboard/whoami" >Sobre mi</Link>
+                    </li>
+                    <li>
+                        <button onClick={handleClick} name="cerrar" class="btn btn-danger" style={{ marginTop: '200px', width: '83%'}} >Cerrar sesión</button>
+                    </li>
+                </ul>
+            </div>
+            <div id="page-content-wrapper">
+                <div class="container-fluid">
+                    {children}
+                </div>
+            </div>
         </div>
     )
 }

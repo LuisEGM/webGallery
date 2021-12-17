@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import Header from '../../components/header'
 import ObraHome from '../../assets/obra-home.svg'
 import Banner from '../../assets/banner.svg'
@@ -7,8 +7,13 @@ import Slider2 from '../../assets/Slider2.png'
 import Slider3 from '../../assets/Slider3.png'
 import Footer from '../../components/footer'
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../../context/authContext'
 
 const Home = () => {
+
+    const { isAuthenticated } = useContext(AuthContext)
+    const isAuht = isAuthenticated();
+
     return (
         <>
             <Header location={"HOME"} />
@@ -18,10 +23,18 @@ const Home = () => {
                         <div style={{width: '80%', height: '50%', margin: '0 auto' }}>
                             <h1 className="texto-u1" style={{fontSize: 40, fontWeight: 'bold'}}>Bienvenid@ a WebGallery</h1>
                             <p style={{fontSize: 25, fontWeight: 'bold'}} >Si eres amante al arte y quieres adquirir o promocionar tus cuadros, has llegado al lugar correcto.</p>
-                            <button className="btn " style={{marginRight: '10px', background: '#EB72E7', color: 'white'}} type="button">Registrate ahora</button>
-                            <Link to="/login">
-                                <button className="btn btn-primary" type="button">Inicia session</button>
-                            </Link>
+                            {!isAuht ? (
+                                <>
+                                    <button className="btn" style={{marginRight: '10px', background: '#EB72E7', color: 'white'}}>Registrate ahora</button>
+                                    <Link to="/login">
+                                        <button className="btn btn-primary" type="button">Inicia session</button>
+                                    </Link>
+                                </>
+                            ) : (
+                                <Link to="/dashboard/view-products">
+                                    <button className="btn btn-primary" type="button">Administrar</button>
+                                </Link>
+                            )}
                         </div>
                     </div>
                     <div className="col-md-5 mt-2">

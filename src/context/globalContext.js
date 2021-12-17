@@ -7,19 +7,26 @@ const initialState = {
   productName: "Nombre inicial",
   price: 0,
   image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT-Sgaglb-AfOqGPKS8iW0qSUk99iflqqneNw&usqp=CAU",
+  autor: "Jhon doe",
+  descripcion: "Descripcion de la obra x",
   productEdit: {},
   obraView: {},
   propietarioObraView: {},
   carrito: [],
   totalPagar: 0,
   totalItems: 0,
-  toastInfo: ""
+  toastInfo: "",
+  orderDetails: []
 };
 
 export const GlobalContext = createContext(initialState);
 
 export const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
+
+  const setOrderDetails = (orderDetails) => {
+    dispatch({ type: "SET_ORDER_DETAILS", payload: { orderDetails } });
+  };
 
   const setObraView = (obra) => {
     dispatch({ type: "SET_OBRA_VIEW", payload: { obra } });
@@ -29,14 +36,14 @@ export const ContextProvider = ({ children }) => {
     dispatch({ type: "SET_PROPIETARIO_OBRA_VIEW", payload: { propietario } });
   };
 
-  const changeProductName = (productName) => {
-    dispatch({ type: "CHANGE_NAME", payload: { productName } });
-  };
-
   const changeToastInfo = (message) => {
     console.log("REDUCER TOAST", message);
     dispatch({ type: "CHANGE_TOAST_INFO", payload: { message } });
   }
+
+  const changeProductName = (productName) => {
+    dispatch({ type: "CHANGE_NAME", payload: { productName } });
+  };
 
   const changeImage = (image) => {
     dispatch({ type: "CHANGE_IMAGE", payload: { image } });
@@ -45,11 +52,21 @@ export const ContextProvider = ({ children }) => {
   const changePrice = (price) => {
     dispatch({ type: "CHANGE_PRICE", payload: { price } });
   };
+  
+  const changeAutor = (autor) => {
+    dispatch({ type: "CHANGE_AUTOR", payload: { autor } });
+  };
+  
+  const changeDescripcion = (descripcion) => {
+    dispatch({ type: "CHANGE_DESCRIPCION", payload: { descripcion } });
+  };
 
   const setProductEdit = (product) => {
-    changeProductName(product.name);
-    changeImage(product.image);
-    changePrice(product.price);
+    changeProductName(product.nombre);
+    changeImage(product.imagen);
+    changePrice(product.precio);
+    changeAutor(product.autor);
+    changeDescripcion(product.descripcion);
     dispatch({ type: "SET_PRODUCT_EDIT", payload: { product } });
   };
 
@@ -80,6 +97,8 @@ export const ContextProvider = ({ children }) => {
         changePrice,
         changeProductName,
         changeImage,
+        changeAutor,
+        changeDescripcion,
         setProductEdit,
         addProductToCarrito,
         deleteProductToCarrito,
@@ -88,7 +107,8 @@ export const ContextProvider = ({ children }) => {
         loadProducts,
         changeToastInfo,
         setObraView,
-        setPropietarioObraView
+        setPropietarioObraView,
+        setOrderDetails
       }}
     >
       {children}

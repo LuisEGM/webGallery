@@ -7,42 +7,70 @@ import { update } from '../services/obrasServices';
 
 const ModalEditar = ({ reloadTriggerFunction, reloadTriggerValue }) => {
 
-  const { price, productName, image, productEdit, changeToastInfo } = useContext(GlobalContext);
+  const { price, productName, image, autor, descripcion, productEdit, changeToastInfo } = useContext(GlobalContext);
 
-  const [product, setProduct] = useState({name: "", price: 0, image: ""})
+  const [product, setProduct] = useState({nombre: "", precio: 0, imagen: "", autor: "", descripcion: "" })
   useEffect(() => {
     // eslint-disable-next-line no-useless-computed-key
-    setProduct({...product, ["name"]: productName})
+    setProduct({...product, ["nombre"]: productName})
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productName])
   useEffect(() => {
     // eslint-disable-next-line no-useless-computed-key
-    setProduct({...product, ["price"]: price})
+    setProduct({...product, ["precio"]: price})
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [price])
   useEffect(() => {
     // eslint-disable-next-line no-useless-computed-key
-    setProduct({...product, ["image"]: image})
+    setProduct({...product, ["imagen"]: image})
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [image])
+  useEffect(() => {
+    // eslint-disable-next-line no-useless-computed-key
+    setProduct({...product, ["autor"]: autor})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [autor])
+  useEffect(() => {
+    // eslint-disable-next-line no-useless-computed-key
+    setProduct({...product, ["descripcion"]: descripcion})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [descripcion])
 
   useEffect(() => {
-    setProduct({name: productName, price: price, image: image})
+    setProduct({
+      nombre: productName, 
+      precio: price, 
+      imagen: image,
+      autor: autor, 
+      descripcion: descripcion
+    })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [productEdit])
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (!(productName === "" || price === 0 || price == null || isNaN(price) || image === "")) {
+    if (!(productName === "" || price === 0 || price == null || isNaN(price) || image === "" || autor === "" || descripcion === "")) {
       (async () => {
         try {
-          const result = await update(productEdit.id, { name: productName, price: price, image: image });
+          const data = { 
+            idObra: productEdit.idObra,
+            nombre: productName, 
+            precio: price, 
+            imagen: image,
+            autor: autor,
+            descripcion: descripcion,
+            estado: productEdit.estado,
+            fechaCreacion: productEdit.fechaCreacion,
+            idUser: productEdit.idUser
+          }
+          console.log(">>>>>>>>< ACTUALIZAR", data);
+          const result = await update(productEdit.idObra, data);
           console.log("PRODUCTO ACTUALIZADO => ", result.data);
         } catch (error) {
           console.log(error);        
         }
       })();
-      changeToastInfo(`info-El producto con id ${productEdit.id} ha sido actualizado`);
+      changeToastInfo(`info-La obra con id ${productEdit.id} ha sido actualizada`);
       reloadTriggerFunction(!reloadTriggerValue);
     }
     else {
@@ -59,7 +87,7 @@ const ModalEditar = ({ reloadTriggerFunction, reloadTriggerValue }) => {
         role="dialog"
         aria-hidden="true"
       >
-        <div className="modal-dialog modal-dialog-centered" role="document">
+        <div className="modal-dialog modal-lg modal-dialog-centered" role="document">
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title">Editar producto</h5>
@@ -69,8 +97,12 @@ const ModalEditar = ({ reloadTriggerFunction, reloadTriggerValue }) => {
             </div>
             <div className="modal-body">
               <div className="row d-flex justify-content-around">
-                <FormProduct type={"editar"} />
-                <ProductItem functionalButtons={false} product={product} />
+                <div className="col-md-6">
+                  <FormProduct type={"editar"} />
+                </div>
+                <div className="col-md-6">
+                  <ProductItem functionalButtons={false} product={product} />
+                </div>
               </div>
             </div>
             <div className="modal-footer">

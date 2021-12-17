@@ -38,11 +38,20 @@ export function appReducer(state, action) {
         case "CHANGE_PRICE":
             return {...state, price: action.payload.price}
         
+        case "CHANGE_AUTOR":
+            return {...state, autor: action.payload.autor}
+        
+        case "CHANGE_DESCRIPCION":
+            return {...state, descripcion: action.payload.descripcion}
+        
         case "SET_PRODUCT_EDIT":
             return {...state, productEdit: action.payload.product}
         
         case "SET_OBRA_VIEW":
             return {...state, obraView: action.payload.obra}
+
+        case "SET_ORDER_DETAILS":
+            return {...state, orderDetails: action.payload.orderDetails}
 
         case "SET_PROPIETARIO_OBRA_VIEW":
             return {...state, propietarioObraView: action.payload.propietario}

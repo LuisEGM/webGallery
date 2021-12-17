@@ -28,7 +28,6 @@ const ProductItem = ({ product, functionalButtons }) => {
                 (async () => {
                     try {
                         const result = await get(product.idObra);
-                        // console.log("OBTENER OBRA => ", result.data);
                         setPropietarioObraView(result.data.propietario);
                         delete result.data.propietario;
                         console.log(result.data);

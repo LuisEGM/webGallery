@@ -4,6 +4,11 @@ export const getAll = () => {
     return axios.get("/obras/");
 }
 
+export const getByUser = (idUser) => {
+    console.log(idUser);
+    return axios.get(`/users/${idUser}/obras/`);
+}
+
 export const get = (id) => {
     return axios.get(`/obras/${id}?filter=%7B%0A%20%20%22include%22%3A%20%5B%0A%20%20%20%20%22propietario%22%0A%20%20%5D%0A%7D`);
 }

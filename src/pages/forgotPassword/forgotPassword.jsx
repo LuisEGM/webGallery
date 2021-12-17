@@ -87,7 +87,7 @@ const ForgotPassword = () => {
                 <div className="desing1">
                     <img src={Desing1} alt="desing1" height="300" width="300"/>
                 </div>
-                <Link to="/dashboard" ref={reditectionToLogin} className="d-none">
+                <Link to="/login" ref={reditectionToLogin} className="d-none">
                     ¿Olvidaste tu contraseña?
                 </Link>
             </div>

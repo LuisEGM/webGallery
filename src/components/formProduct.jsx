@@ -10,7 +10,18 @@ import { create } from '../services/obrasServices';
 const FormProduct = ({ type }) => {
 
   const redirection = useRef(null);
-  const { changePrice, changeImage, changeProductName, price, productName, image, changeToastInfo } = useContext(GlobalContext);
+  const { changePrice,
+          changeImage, 
+          changeProductName,
+          changeAutor,
+          changeDescripcion, 
+          price, 
+          productName, 
+          image,
+          autor,
+          descripcion,
+          changeToastInfo 
+        } = useContext(GlobalContext);
 
   const handleChange = (e) => {
     if (e.target.name === "productName") {
@@ -22,15 +33,33 @@ const FormProduct = ({ type }) => {
     if (e.target.name === "price") {
         changePrice(parseInt(e.target.value))
     }
+    if (e.target.name === "autor") {
+        changeAutor(e.target.value)
+    }
+    if (e.target.name === "descripcion") {
+        changeDescripcion(e.target.value)
+    }
   };
 
   const handleClick = (e) => {
     e.preventDefault();
-    if (!(productName === "" || price === 0 || price == null || isNaN(price) || image === "")) {
+    const tiempoTranscurrido = Date.now();
+    const hoy = new Date(tiempoTranscurrido);
+    if (!(productName === "" || price === 0 || price == null || isNaN(price) || image === "" || autor === "" || descripcion === "")) {
       (async () => {
         try {
-          // console.log({ name: productName, price: price, image: image});
-          const result = await create({ name: productName, price: price, image: image });
+          let data = { 
+            nombre: productName, 
+            precio: price,
+            imagen: image,
+            autor: autor,
+            descripcion: descripcion,
+            estado: "PUBLICADA",
+            fechaCreacion: hoy.toISOString(),
+            idUser: JSON.parse(localStorage.getItem("user")).id,
+          }
+          console.log(data);
+          const result = await create(data);
           console.log("PRODUCTO CREADO => ", result.data);
         } catch (error) {
           console.log(error);
@@ -46,6 +75,7 @@ const FormProduct = ({ type }) => {
     }
     else {
       toast.warn('Asegurate de llenar todos los campos del formulario...!', {
+        theme: "colored",
         position: "top-right",
         autoClose: 3000,
         hideProgressBar: false,
@@ -74,6 +104,18 @@ const FormProduct = ({ type }) => {
           />
         </div>
         <div className="form-group mb-3">
+          <label htmlFor="autor">Autor</label>
+          <input
+            onChange={handleChange}
+            type="text"
+            className="form-control"
+            id="autor"
+            name="autor"
+            placeholder="Autor"
+            value={autor}
+          />
+        </div>
+        <div className="form-group mb-3">
           <label htmlFor="image">Image-url</label>
           <div className="input-group">
             <input
@@ -88,7 +130,7 @@ const FormProduct = ({ type }) => {
           </div>
         </div>
         <div className="form-group mb-3">
-          <label htmlFor="price">Price</label>
+          <label htmlFor="price">Precio</label>
           <div className="input-group">
             <span className="input-group-text">$</span>
             <input
@@ -102,6 +144,18 @@ const FormProduct = ({ type }) => {
             <span className="input-group-text">.00</span>
           </div>
         </div>
+        <div className="form-group mb-3">
+          <label htmlFor="descripcion">Descripción</label>
+          <input
+            onChange={handleChange}
+            type="text"
+            className="form-control"
+            id="descripcion"
+            name="descripcion"
+            placeholder="Descripción corta"
+            value={descripcion}
+          />
+        </div>
         {type === "crear" && 
           <button
             onClick={handleClick}
@@ -111,7 +165,7 @@ const FormProduct = ({ type }) => {
             Añadir producto
           </button>
         }
-        <Link to="/admin/view-products">
+        <Link to="/dashboard/view-products">
           <button ref={redirection} style={{ display: "none" }}></button>  
         </Link>
       </form>
